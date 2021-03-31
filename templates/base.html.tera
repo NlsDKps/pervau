@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>{{app_context.app_name}} {% block title %}{% endblock title %} </title>
+        <link rel="stylesheet" href="/static/styles/base.css">
+        <style>{% block style %}{% endblock style %}</style>
+        <script src="/static/scripts/base.js"></script>
+        {% endblock head %}
+    </head>
+    <body>
+        <header>
+            <div class="hdr_main">
+                <div class="hdr_title">{{app_context.app_name}}</div>
+                <div class="hdr_login_out">
+                    {% if app_context.logged_in %}
+                        <button type="button" onclick="javascript:logout()">
+                            Logout
+                        </button>
+                    {% else %}
+                        {% block body_header %}{% endblock body_header %}
+                    {% endif %}
+                </div>
+            </div>
+            <nav>
+                <a href="/">Home</a>
+                {% if app_context.logged_in %}
+                <a href="/ingredients">Ingredients</a>
+                <a href="/meals">Meal History</a>
+                <a href="/calorie_consumption">Calorie Consumption History</a>
+                <a href="/weights">Weight History</a>
+                {% endif %}
+            </nav>
+        </header>
+        <div class="content">
+            <main>
+            {% block page_main %}{% endblock page_main %}
+            </main>
+            {% block page_additional %}{% endblock page_additional %}
+        </div>
+        <footer>
+            <a href="#">Impressum</a>
+        </footer>
+        <script>
+            {% block page_scripts %}{% endblock page_scripts %}
+        </script>
+    </body>
+</html>

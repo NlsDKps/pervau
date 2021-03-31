@@ -1,0 +1,61 @@
+{% extends "list" %}
+
+{% block table_control %}
+    <form action="/add" method="post">
+        <label for="date">Date</label><input type="date" name="date">
+        <label for="time">Time</label><input type="time" name="time">
+        <label for="systole">Systole</label><input type="number" name="systole">
+        <label for="diastole">Diastole</label><input type="number" name="diastole">
+        <label for="pulse">Pulse</label><input type="number" name="pulse">
+        <button type="submit">Submit</button>
+    </form>
+{% endblock table_control %}
+
+{% block table_head %}
+    <th>Date</th>
+    <th>Time</th>
+    <th>Systole</th>
+    <th>Diastole</th>
+    <th>Pulse</th>
+{% endblock table_head %}
+
+{% block table_body %}
+    {% for bloodpressure in bloodpressures %}
+        <tr>
+            <td>
+                {{bloodpressure.date}}
+            </td>
+            <td>
+                {{bloodpressure.time}}
+            </td>
+            <td>
+                {{bloodpressure.systole}}
+            </td>
+            <td>
+                {{bloodpressure.diastole}}
+            </td>
+            <td>
+                {{bloodpressure.pulse}}
+            </td>
+            <td>
+                <button type="button" onclick="del_bp({{bloodpressure.id}})">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}
+
+{% block page_scripts %}
+async function del_bp(id) {
+    var response = await fetch("api/bloodpressure/"+id, {
+        method: 'DELETE',
+        mode: 'cors'
+    }).catch(err => alert(err));
+    if (response.ok) {
+        location.reload();
+    } else {
+        alert("HTTP Error: " + response.status);
+    }
+}
+{% endblock page_scripts %}

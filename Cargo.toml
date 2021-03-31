@@ -1,0 +1,33 @@
+[package]
+name = "pervau"
+version = "0.1.0"
+authors = ["Nils Kopshoff <nils@kopshoff.koeln>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# Database
+# * uses sqlite as database backend
+diesel = { version="1.4.4", features=["sqlite"] }
+# Time
+chrono = "0.4.19"
+# Access to .env-file
+dotenv = "0.15.0"
+# Logging
+env_logger = "0.8.2"
+log = "0.4"
+
+rocket = "0.4"
+
+# De-/Serialization framework
+# * _derive for macros Serialize and Deserialize
+# * _json for JSON parsing of serde-structs
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+
+[dependencies.rocket_contrib]
+version = "0.4.6"
+default-features = false
+features = ["tera_templates", "serve", "json"]
