@@ -2,11 +2,16 @@
 
 {% block table_control %}
     <form action="/add" method="post">
-        <label for="date">Date</label><input type="date" name="date">
-        <label for="time">Time</label><input type="time" name="time">
-        <label for="systole">Systole</label><input type="number" name="systole">
-        <label for="diastole">Diastole</label><input type="number" name="diastole">
-        <label for="pulse">Pulse</label><input type="number" name="pulse">
+        <label for="date">Date</label>
+        <input type="date" name="date" value="{{preset_context.current_date}}">
+        <label for="time">Time</label>
+        <input type="time" name="time" value="{{preset_context.current_time}}">
+        <label for="systole">Systole</label>
+        <input type="number" name="systole">
+        <label for="diastole">Diastole</label>
+        <input type="number" name="diastole">
+        <label for="pulse">Pulse</label>
+        <input type="number" name="pulse">
         <button type="submit">Submit</button>
     </form>
 {% endblock table_control %}
