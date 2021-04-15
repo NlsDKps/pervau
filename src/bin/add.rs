@@ -28,7 +28,6 @@ Options are:
 /// Since Sqlite does not support date and time, read_date and read_time are
 /// just sanity-checks of the user entry.
 fn add_bloodpressure<'a>(db_url: &'a str) -> () {
-    let user_id : i32 = 0;
     println!("Supply date (YYYY-MM-DD):");
     let date = match read_date() {
         Some(date) => date.to_string(),
@@ -55,7 +54,6 @@ fn add_bloodpressure<'a>(db_url: &'a str) -> () {
         None => return
     };
     let new_ser_bp = NewSerBloodPressure {
-        user_id: user_id,
         date: date,
         time: time,
         systole: systole,

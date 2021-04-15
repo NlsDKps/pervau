@@ -10,10 +10,12 @@ use crate::{
         bloodpressure::NewSerBloodPressure,
         context::{
             AppContext,
+            AddBloodpressurePresetsContext,
             BloodpressureListContext
         }
     },
 };
+
 
 #[get("/")]
 pub fn list(
@@ -22,6 +24,7 @@ pub fn list(
     let bps = mgmt_bp::read_all(&db_url);
     let context = BloodpressureListContext {
         app_context : AppContext::new(),
+        preset_context: AddBloodpressurePresetsContext::new(),
         bloodpressures: bps
     };
     Template::render("bloodpressure/list", &context)
